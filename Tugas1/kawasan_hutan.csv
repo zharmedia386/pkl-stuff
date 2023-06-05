@@ -1,0 +1,217 @@
+provinsi,jenis,area
+Aceh,Hutan Produksi,281195.0
+Bali,Hutan Produksi,4745.0
+Bengkulu,Hutan Produksi,13405.0
+Gorontalo,Hutan Produksi,144385.0
+Jambi,Hutan Produksi,177155.0
+Kalimantan Barat,Hutan Produksi,416665.0
+Kalimantan Selatan,Hutan Produksi,168370.0
+Kalimantan Tengah,Hutan Produksi,753990.0
+Kalimantan Timur dan Utara,Hutan Produksi,474204.0
+Kepulauan Bangka Belitung,Hutan Produksi,38870.0
+Kepulauan Riau,Hutan Produksi,182830.0
+Lampung,Hutan Produksi,53100.0
+Maluku,Hutan Produksi,494160.0
+Maluku Utara,Hutan Produksi,210035.0
+Nusa Tenggara Barat,Hutan Produksi,176090.0
+Nusa Tenggara Timur,Hutan Produksi,132030.0
+Papua,Hutan Produksi,1333310.0
+Papua Barat,Hutan Produksi,90370.0
+Riau,Hutan Produksi,127550.0
+Sulawesi Barat,Hutan Produksi,232155.0
+Sulawesi Selatan,Hutan Produksi,252305.0
+Sulawesi Tengah,Hutan Produksi,687795.0
+Sulawesi Tenggara,Hutan Produksi,389430.0
+Sulawesi Utara,Hutan Produksi,109050.0
+Sumatera Barat,Hutan Produksi,119910.0
+Sumatera Selatan,Hutan Produksi,37120.0
+Sumatera Utara,Hutan Produksi,235775.0
+Aceh,UPHHK HTR,0.0
+Bali,UPHHK HTR,0.0
+Bengkulu,UPHHK HTR,0.0
+Gorontalo,UPHHK HTR,0.0
+Jambi,UPHHK HTR,0.0
+Kalimantan Barat,UPHHK HTR,0.0
+Kalimantan Selatan,UPHHK HTR,0.0
+Kalimantan Tengah,UPHHK HTR,0.0
+Kalimantan Timur dan Utara,UPHHK HTR,0.0
+Kepulauan Bangka Belitung,UPHHK HTR,0.0
+Kepulauan Riau,UPHHK HTR,0.0
+Lampung,UPHHK HTR,0.0
+Maluku,UPHHK HTR,0.0
+Maluku Utara,UPHHK HTR,0.0
+Nusa Tenggara Barat,UPHHK HTR,0.0
+Nusa Tenggara Timur,UPHHK HTR,0.0
+Papua,UPHHK HTR,0.0
+Papua Barat,UPHHK HTR,0.0
+Riau,UPHHK HTR,0.0
+Sulawesi Barat,UPHHK HTR,0.0
+Sulawesi Selatan,UPHHK HTR,0.0
+Sulawesi Tengah,UPHHK HTR,0.0
+Sulawesi Tenggara,UPHHK HTR,0.0
+Sulawesi Utara,UPHHK HTR,0.0
+Sumatera Barat,UPHHK HTR,0.0
+Sumatera Selatan,UPHHK HTR,0.0
+Sumatera Utara,UPHHK HTR,0.0
+Aceh,HKM HD Kemitraan,0.0
+Bali,HKM HD Kemitraan,0.0
+Bengkulu,HKM HD Kemitraan,0.0
+Gorontalo,HKM HD Kemitraan,0.0
+Jambi,HKM HD Kemitraan,0.0
+Kalimantan Barat,HKM HD Kemitraan,0.0
+Kalimantan Selatan,HKM HD Kemitraan,0.0
+Kalimantan Tengah,HKM HD Kemitraan,0.0
+Kalimantan Timur dan Utara,HKM HD Kemitraan,0.0
+Kepulauan Bangka Belitung,HKM HD Kemitraan,0.0
+Kepulauan Riau,HKM HD Kemitraan,0.0
+Lampung,HKM HD Kemitraan,0.0
+Maluku,HKM HD Kemitraan,0.0
+Maluku Utara,HKM HD Kemitraan,0.0
+Nusa Tenggara Barat,HKM HD Kemitraan,0.0
+Nusa Tenggara Timur,HKM HD Kemitraan,0.0
+Papua,HKM HD Kemitraan,0.0
+Papua Barat,HKM HD Kemitraan,0.0
+Riau,HKM HD Kemitraan,0.0
+Sulawesi Barat,HKM HD Kemitraan,0.0
+Sulawesi Selatan,HKM HD Kemitraan,0.0
+Sulawesi Tengah,HKM HD Kemitraan,0.0
+Sulawesi Tenggara,HKM HD Kemitraan,0.0
+Sulawesi Utara,HKM HD Kemitraan,0.0
+Sumatera Barat,HKM HD Kemitraan,0.0
+Sumatera Selatan,HKM HD Kemitraan,0.0
+Sumatera Utara,HKM HD Kemitraan,0.0
+Aceh,IUPHHK RE,0.0
+Bali,IUPHHK RE,0.0
+Bengkulu,IUPHHK RE,0.0
+Gorontalo,IUPHHK RE,0.0
+Jambi,IUPHHK RE,0.0
+Kalimantan Barat,IUPHHK RE,0.0
+Kalimantan Selatan,IUPHHK RE,0.0
+Kalimantan Tengah,IUPHHK RE,0.0
+Kalimantan Timur dan Utara,IUPHHK RE,0.0
+Kepulauan Bangka Belitung,IUPHHK RE,0.0
+Kepulauan Riau,IUPHHK RE,0.0
+Lampung,IUPHHK RE,0.0
+Maluku,IUPHHK RE,0.0
+Maluku Utara,IUPHHK RE,0.0
+Nusa Tenggara Barat,IUPHHK RE,0.0
+Nusa Tenggara Timur,IUPHHK RE,0.0
+Papua,IUPHHK RE,0.0
+Papua Barat,IUPHHK RE,0.0
+Riau,IUPHHK RE,0.0
+Sulawesi Barat,IUPHHK RE,0.0
+Sulawesi Selatan,IUPHHK RE,0.0
+Sulawesi Tengah,IUPHHK RE,0.0
+Sulawesi Tenggara,IUPHHK RE,0.0
+Sulawesi Utara,IUPHHK RE,0.0
+Sumatera Barat,IUPHHK RE,0.0
+Sumatera Selatan,IUPHHK RE,0.0
+Sumatera Utara,IUPHHK RE,0.0
+Aceh,IUPHHK HTI,0.0
+Bali,IUPHHK HTI,0.0
+Bengkulu,IUPHHK HTI,0.0
+Gorontalo,IUPHHK HTI,0.0
+Jambi,IUPHHK HTI,0.0
+Kalimantan Barat,IUPHHK HTI,0.0
+Kalimantan Selatan,IUPHHK HTI,0.0
+Kalimantan Tengah,IUPHHK HTI,0.0
+Kalimantan Timur dan Utara,IUPHHK HTI,0.0
+Kepulauan Bangka Belitung,IUPHHK HTI,0.0
+Kepulauan Riau,IUPHHK HTI,0.0
+Lampung,IUPHHK HTI,0.0
+Maluku,IUPHHK HTI,0.0
+Maluku Utara,IUPHHK HTI,0.0
+Nusa Tenggara Barat,IUPHHK HTI,0.0
+Nusa Tenggara Timur,IUPHHK HTI,0.0
+Papua,IUPHHK HTI,0.0
+Papua Barat,IUPHHK HTI,0.0
+Riau,IUPHHK HTI,0.0
+Sulawesi Barat,IUPHHK HTI,0.0
+Sulawesi Selatan,IUPHHK HTI,0.0
+Sulawesi Tengah,IUPHHK HTI,0.0
+Sulawesi Tenggara,IUPHHK HTI,0.0
+Sulawesi Utara,IUPHHK HTI,0.0
+Sumatera Barat,IUPHHK HTI,0.0
+Sumatera Selatan,IUPHHK HTI,0.0
+Sumatera Utara,IUPHHK HTI,0.0
+Aceh,IUPHHK HA,0.0
+Bali,IUPHHK HA,0.0
+Bengkulu,IUPHHK HA,0.0
+Gorontalo,IUPHHK HA,0.0
+Jambi,IUPHHK HA,0.0
+Kalimantan Barat,IUPHHK HA,0.0
+Kalimantan Selatan,IUPHHK HA,0.0
+Kalimantan Tengah,IUPHHK HA,0.0
+Kalimantan Timur dan Utara,IUPHHK HA,0.0
+Kepulauan Bangka Belitung,IUPHHK HA,0.0
+Kepulauan Riau,IUPHHK HA,0.0
+Lampung,IUPHHK HA,0.0
+Maluku,IUPHHK HA,0.0
+Maluku Utara,IUPHHK HA,0.0
+Nusa Tenggara Barat,IUPHHK HA,0.0
+Nusa Tenggara Timur,IUPHHK HA,0.0
+Papua,IUPHHK HA,0.0
+Papua Barat,IUPHHK HA,0.0
+Riau,IUPHHK HA,0.0
+Sulawesi Barat,IUPHHK HA,0.0
+Sulawesi Selatan,IUPHHK HA,0.0
+Sulawesi Tengah,IUPHHK HA,0.0
+Sulawesi Tenggara,IUPHHK HA,0.0
+Sulawesi Utara,IUPHHK HA,0.0
+Sumatera Barat,IUPHHK HA,0.0
+Sumatera Selatan,IUPHHK HA,0.0
+Sumatera Utara,IUPHHK HA,0.0
+Aceh,Hutan Lindung,1050.0
+Bali,Hutan Lindung,0.0
+Bengkulu,Hutan Lindung,8885.0
+Gorontalo,Hutan Lindung,95.0
+Jambi,Hutan Lindung,1700.0
+Kalimantan Barat,Hutan Lindung,4435.0
+Kalimantan Selatan,Hutan Lindung,32400.0
+Kalimantan Tengah,Hutan Lindung,1350.0
+Kalimantan Timur dan Utara,Hutan Lindung,775.0
+Kepulauan Bangka Belitung,Hutan Lindung,155.0
+Kepulauan Riau,Hutan Lindung,0.0
+Lampung,Hutan Lindung,300.0
+Maluku,Hutan Lindung,120.0
+Maluku Utara,Hutan Lindung,5895.0
+Nusa Tenggara Barat,Hutan Lindung,14035.0
+Nusa Tenggara Timur,Hutan Lindung,1485.0
+Papua,Hutan Lindung,35010.0
+Papua Barat,Hutan Lindung,2877.0
+Riau,Hutan Lindung,465.0
+Sulawesi Barat,Hutan Lindung,0.0
+Sulawesi Selatan,Hutan Lindung,31790.0
+Sulawesi Tengah,Hutan Lindung,2750.0
+Sulawesi Tenggara,Hutan Lindung,17335.0
+Sulawesi Utara,Hutan Lindung,5265.0
+Sumatera Barat,Hutan Lindung,0.0
+Sumatera Selatan,Hutan Lindung,1110.0
+Sumatera Utara,Hutan Lindung,43105.0
+Aceh,HKM HD HTR,0.0
+Bali,HKM HD HTR,0.0
+Bengkulu,HKM HD HTR,0.0
+Gorontalo,HKM HD HTR,0.0
+Jambi,HKM HD HTR,0.0
+Kalimantan Barat,HKM HD HTR,0.0
+Kalimantan Selatan,HKM HD HTR,0.0
+Kalimantan Tengah,HKM HD HTR,0.0
+Kalimantan Timur dan Utara,HKM HD HTR,0.0
+Kepulauan Bangka Belitung,HKM HD HTR,0.0
+Kepulauan Riau,HKM HD HTR,0.0
+Lampung,HKM HD HTR,0.0
+Maluku,HKM HD HTR,0.0
+Maluku Utara,HKM HD HTR,0.0
+Nusa Tenggara Barat,HKM HD HTR,0.0
+Nusa Tenggara Timur,HKM HD HTR,0.0
+Papua,HKM HD HTR,0.0
+Papua Barat,HKM HD HTR,0.0
+Riau,HKM HD HTR,0.0
+Sulawesi Barat,HKM HD HTR,0.0
+Sulawesi Selatan,HKM HD HTR,0.0
+Sulawesi Tengah,HKM HD HTR,0.0
+Sulawesi Tenggara,HKM HD HTR,0.0
+Sulawesi Utara,HKM HD HTR,0.0
+Sumatera Barat,HKM HD HTR,0.0
+Sumatera Selatan,HKM HD HTR,0.0
+Sumatera Utara,HKM HD HTR,0.0
