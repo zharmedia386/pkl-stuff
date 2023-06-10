@@ -5,6 +5,7 @@ from dash import dcc, html, callback, Output, Input, dash_table
 from flask import Flask
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
+from apps import navigation
 
 dash.register_page(__name__,
     path='/sub-case-2',
@@ -36,6 +37,7 @@ kayu_bulat_grouped_by_provinsi_sorted = kayu_bulat_grouped_by_provinsi.sort_valu
 kayu_bulat_grouped_by_provinsi_sorted = kayu_bulat_grouped_by_provinsi_sorted.rename(columns={'provinsi': 'Provinsi', 'volume': 'Nilai Produksi'})
 
 kbulat_grouped_by_provinsi_sorted = data_kayu_bulat.groupby(['provinsi', 'kelompok'])['volume'].sum().reset_index()
+
 ############################################################
 # Produksi Kayu Bulat berdasarkan jenis
 ############################################################   
@@ -160,235 +162,267 @@ dropdown_rows = dcc.Dropdown(
 
 layout = html.Div(
     [
-        html.H2('Produksi Kayu Bulat x Nilai Ekspor'),
-        ################################################################
-        # SUB CASE 1
-        ################################################################
-        dbc.Row(
+        navigation.navbar,
+        html.Div(
             [
-                dbc.Col(
+                html.H1('Produksi Kayu Bulat x Nilai Ekspor', className="ls-title"),
+                ################################################################
+                # Produksi Kayu Bulat Berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
                     [
-                        html.H3('Produksi Kayu Bulat Berdasarkan Provinsi'),
-                        html.P(f"Total Produksi Kayu Bulat: {data_kayu_bulat['volume'].sum()}"),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                        html.Div(
-                            id='table-container4',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination4',
-                                    columns=[{'name': i, 'id': i} for i in kayu_bulat_grouped_by_provinsi_sorted.columns],
-                                    data=kayu_bulat_grouped_by_provinsi_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
-                                )
-                            ]
-                        ),
-                        html.Div(id='table-pagination-container4')
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(kayu_bulat_grouped_by_provinsi_sorted, x='Provinsi', y='Nilai Produksi')
-                        )
-                    ],
-                    md=6,
-                )
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Produksi Kayu Bulat Berdasarkan Jenis Kayu'),
-                        dbc.Table.from_dataframe(kayu_bulat_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(kayu_bulat_grouped_by_jenis_sorted, x='Jenis Kayu', y='Nilai Produksi')
-                        ),
-                    ],
-                    md=6,
-                ),
-            ]
-        ),
-        ################################################################
-        # SUB CASE 2
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Nilai Ekspor Berdasarkan Provinsi'),
-                        html.P(f"Total Nilai Ekspor: {data_ekspor['value usd'].sum()}"),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                        html.Div(
-                            id='table-container5',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination5',
-                                    columns=[{'name': i, 'id': i} for i in ekspor_grouped_by_provinsi_sorted.columns],
-                                    data=ekspor_grouped_by_provinsi_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
-                                )
-                            ]
-                        ),
-                        html.Div(id='table-pagination-container5')
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(ekspor_grouped_by_provinsi_sorted, x='Provinsi', y='Nilai Ekspor')
-                        )
-                    ],
-                    md=6,
-                )
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Nilai Ekspor Berdasarkan Jenis Produk'),
-                        dbc.Table.from_dataframe(ekspor_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(ekspor_grouped_by_jenis_sorted, x='Jenis Produk', y='Nilai Ekspor')
-                        ),
-                    ],
-                    md=6,
-                ),
-            ]
-        ),
-        ################################################################
-        # SUB CASE 3
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Perbandingan Provinsi berdasarkan Nilai Produksi Kayu Bulat dan Ekspor'),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                       html.Div(
-                            id='table-container6',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination6',
-                                    columns=[{'name': i, 'id': i} for i in merged_data_sorted.columns],
-                                    data=merged_data_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
-                                )
-                            ]
-                        ),
-                        html.Div(id='table-pagination-container6')
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(merged_data_sorted, x='Provinsi', y='Volume(m3)', color='Nilai Ekspor(USD)')
-                        ),
-                    ],
-                    md=6,
-                ),
-            ]
-        ),
-        ################################################################
-        # SUB CASE 4
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.Graph(id='bar-chart', figure=fig)
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(
-                                kbulat_grouped_by_provinsi_sorted,
-                                x='provinsi', y='volume', color='kelompok',
-                                title='Nilai Produksi dan Jenis Kayu Bulat berdasarkan Provinsi',
-                            )
-                        ),
-                    ],
-                    md=6,
-                ),
-            ]
-        ),
-        ################################################################
-        # SUB CASE 5
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Pemetaan Jenis Produksi dan Nilai Produksi Kayu Bulat Berdasarkan Provinsi'),
-                        dcc.Graph(
-                            figure=go.Figure(
-                                data=[
-                                    go.Table(
-                                        header=dict(
-                                            values=[f"<b>{col}</b>" for col in data_tabel.columns],
-                                            fill_color='grey',
-                                            align='center',
-                                            font=dict(color='white', size=12)
-                                        ),
-                                        cells=dict(
-                                            values=[data_tabel.provinsi, data_tabel.kelompok, data_tabel.volume],
-                                            fill_color='lavender',
-                                            align='left',
-                                            font=dict(color='black', size=12)
+                        dbc.Col(
+                            [
+                                html.H5('1. Produksi Kayu Bulat Berdasarkan Provinsi'),
+                                html.P(f"Total Produksi Kayu Bulat: {data_kayu_bulat['volume'].sum()}"),
+                                html.Div([
+                                        html.Label('Rows per Page: '),
+                                        dropdown_rows
+                                    ]),
+                                html.Div(
+                                    id='table-container4',
+                                    style={'display': 'none'},  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id='table-pagination4',
+                                            columns=[{'name': i, 'id': i} for i in kayu_bulat_grouped_by_provinsi_sorted.columns],
+                                            data=kayu_bulat_grouped_by_provinsi_sorted.to_dict('records'),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action='custom',
+                                            style_data={'whiteSpace': 'normal', 'height': 'auto'},
+                                            style_cell={'textAlign': 'center'},
+                                            style_table={'overflowX': 'auto'},
                                         )
-                                    )
-                                ]
-                            )
+                                    ]
+                                ),
+                                html.Div(id='table-pagination-container4')
+                            ],
+                            md=6,
                         ),
-                    ],
-                    md=12,
-                    style={'padding': '0px'}
-                )
-            ]
-        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(kayu_bulat_grouped_by_provinsi_sorted, x='Provinsi', y='Nilai Produksi')
+                                )
+                            ],
+                            md=6,
+                        )
+                    ]
+                ),
+                ################################################################
+                # Produksi Kayu Bulat Berdasarkan Jenis Ka
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5('2. Produksi Kayu Bulat Berdasarkan Jenis Kayu'),
+                                dbc.Table.from_dataframe(kayu_bulat_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(kayu_bulat_grouped_by_jenis_sorted, x='Jenis Kayu', y='Nilai Produksi')
+                                ),
+                            ],
+                            md=6,
+                        ),
+                    ]
+                ),
+                ################################################################
+                # Nilai Ekspor Berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5('3. Nilai Ekspor Berdasarkan Provinsi'),
+                                html.P(f"Total Nilai Ekspor: {data_ekspor['value usd'].sum()}"),
+                                html.Div([
+                                        html.Label('Rows per Page: '),
+                                        dropdown_rows
+                                    ]),
+                                html.Div(
+                                    id='table-container5',
+                                    style={'display': 'none'},  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id='table-pagination5',
+                                            columns=[{'name': i, 'id': i} for i in ekspor_grouped_by_provinsi_sorted.columns],
+                                            data=ekspor_grouped_by_provinsi_sorted.to_dict('records'),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action='custom',
+                                            style_data={'whiteSpace': 'normal', 'height': 'auto'},
+                                            style_cell={'textAlign': 'center'},
+                                            style_table={'overflowX': 'auto'},
+                                        )
+                                    ]
+                                ),
+                                html.Div(id='table-pagination-container5')
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(ekspor_grouped_by_provinsi_sorted, x='Provinsi', y='Nilai Ekspor')
+                                )
+                            ],
+                            md=6,
+                        )
+                    ]
+                ),
+                ################################################################
+                # Nilai Ekspor Berdasarkan Jenis Produk
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5('4. Nilai Ekspor Berdasarkan Jenis Produk'),
+                                dbc.Table.from_dataframe(ekspor_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(ekspor_grouped_by_jenis_sorted, x='Jenis Produk', y='Nilai Ekspor')
+                                ),
+                            ],
+                            md=6,
+                        ),
+                    ]
+                ),
+                ################################################################
+                # Perbandingan Provinsi berdasarkan Nilai Produksi Kayu Bulat dan Ekspor
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5('5. Perbandingan Provinsi berdasarkan Nilai Produksi Kayu Bulat dan Ekspor'),
+                                html.Div([
+                                        html.Label('Rows per Page: '),
+                                        dropdown_rows
+                                    ]),
+                            html.Div(
+                                    id='table-container6',
+                                    style={'display': 'none'},  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id='table-pagination6',
+                                            columns=[{'name': i, 'id': i} for i in merged_data_sorted.columns],
+                                            data=merged_data_sorted.to_dict('records'),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action='custom',
+                                            style_data={'whiteSpace': 'normal', 'height': 'auto'},
+                                            style_cell={'textAlign': 'center'},
+                                            style_table={'overflowX': 'auto'},
+                                        )
+                                    ]
+                                ),
+                                html.Div(id='table-pagination-container6')
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(merged_data_sorted, x='Provinsi', y='Volume(m3)', color='Nilai Ekspor(USD)')
+                                ),
+                            ],
+                            md=6,
+                        ),
+                    ]
+                ),
+                ################################################################
+                # Nilai Produksi dan Jenis Kayu Bulat berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                dcc.Graph(id='bar-chart', figure=fig)
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(
+                                        kbulat_grouped_by_provinsi_sorted,
+                                        x='provinsi', y='volume', color='kelompok',
+                                        title='Nilai Produksi dan Jenis Kayu Bulat berdasarkan Provinsi',
+                                    )
+                                ),
+                            ],
+                            md=6,
+                        ),
+                    ]
+                ),
+                ################################################################
+                # Pemetaan Jenis Produksi dan Nilai Produksi Kayu Bulat Berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5('6. Pemetaan Jenis Produksi dan Nilai Produksi Kayu Bulat Berdasarkan Provinsi', style={"margin-top": "30px"}),
+                                dcc.Graph(
+                                    figure=go.Figure(
+                                        data=[
+                                            go.Table(
+                                                header=dict(
+                                                    values=[f"<b>{col}</b>" for col in data_tabel.columns],
+                                                    fill_color='grey',
+                                                    align='center',
+                                                    font=dict(color='white', size=12)
+                                                ),
+                                                cells=dict(
+                                                    values=[data_tabel.provinsi, data_tabel.kelompok, data_tabel.volume],
+                                                    fill_color='lavender',
+                                                    align='left',
+                                                    font=dict(color='black', size=12)
+                                                )
+                                            )
+                                        ]
+                                    )
+                                ),
+                            ],
+                            md=12,
+                            style={'padding': '0px'}
+                        )
+                    ]
+                ),
+                ################################################################
+                # Conclusion
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [   
+                                        html.H4("Kesimpulan", className="card-subtitle"),
+                                        html.P(
+                                            "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
+                                            className="card-text",
+                                        ),
+                                    ], className="mb-12",
+                                ),
+                            ), 
+                        ),
+                    ], style={"margin-top": "40px"},
+                ),
+            ],
+            className="frame",
+        )
     ]
 )
     

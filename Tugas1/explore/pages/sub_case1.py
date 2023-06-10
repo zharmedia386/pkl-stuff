@@ -5,6 +5,7 @@ from dash import dcc, html, callback, Output, Input, dash_table
 from flask import Flask
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
+from apps import navigation
 
 dash.register_page(__name__,
                    path='/sub-case-1',
@@ -131,7 +132,6 @@ fig.add_trace(go.Bar(
 
 # Set layout
 fig.update_layout(
-    title='Luas Tanah dan Bahan Baku Berdasarkan Provinsi',
     xaxis=dict(title='Provinsi'),
     yaxis=dict(title='Luas Tanah (Ha)', side='left', showgrid=False, tickformat=',.2f'),
     yaxis2=dict(title='Bahan Baku', side='right', overlaying='y', showgrid=False, tickformat=',.2f'),
@@ -193,7 +193,6 @@ bar_trace = go.Bar(
 
 # Set layout
 layout = go.Layout(
-    title='Perbandingan Sumber Pemenuhan Bahan Baku',
     xaxis=dict(title='Sumber Bahan Baku'),
     yaxis=dict(title='Bahan Baku'),
 )
@@ -203,197 +202,284 @@ fig2 = go.Figure(data=[bar_trace], layout=layout)
 
 layout = html.Div(
     [
-        html.H2('Kawasan Hutan x Pemenuhan Bahan Baku'),
-        ################################################################
-        # SUB CASE 1
-        ################################################################
-        dbc.Row(
+        navigation.navbar,
+        html.Div(
             [
-                dbc.Col(
+                html.H1("Kawasan Hutan x Pemenuhan Bahan Baku", className="ls-title"),
+                ################################################################
+                # Luas Tanah (Ha) Berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
                     [
-                        html.H3('Luas Tanah (Ha) Berdasarkan Provinsi'),
-                        html.P(f"Total Luas Tanah (Ha): {data_kawasan_hutan['area'].sum()}"),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                       html.Div(
-                            id='table-container',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination',
-                                    columns=[{'name': i, 'id': i} for i in area_grouped_by_provinsi_sorted.columns],
-                                    data=area_grouped_by_provinsi_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
+                        dbc.Col(
+                            [
+                                html.H5("1. Luas Tanah (Ha) Berdasarkan Provinsi"),
+                                html.P(
+                                    f"Total Luas Tanah (Ha): {data_kawasan_hutan['area'].sum()}"
+                                ),
+                                html.Div(
+                                    [html.Label("Rows per Page: "), dropdown_rows]
+                                ),
+                                html.Div(
+                                    id="table-container",
+                                    style={
+                                        "display": "none"
+                                    },  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id="table-pagination",
+                                            columns=[
+                                                {"name": i, "id": i}
+                                                for i in area_grouped_by_provinsi_sorted.columns
+                                            ],
+                                            data=area_grouped_by_provinsi_sorted.to_dict(
+                                                "records"
+                                            ),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action="custom",
+                                            style_data={
+                                                "whiteSpace": "normal",
+                                                "height": "auto",
+                                            },
+                                            style_cell={"textAlign": "center"},
+                                            style_table={"overflowX": "auto"},
+                                        )
+                                    ],
+                                ),
+                                html.Div(id="table-pagination-container"),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(
+                                        area_grouped_by_provinsi_sorted,
+                                        x="Provinsi",
+                                        y="Luas Tanah (Ha)",
+                                    )
                                 )
-                            ]
+                            ],
+                            md=6,
                         ),
-                        html.Div(id='table-pagination-container')
-                    ],
-                    md=6,
+                    ]
                 ),
-                dbc.Col(
+                ################################################################
+                # Luast Tanah (Ha) Berdasarkan Jenis Hutan
+                ################################################################
+                dbc.Row(
                     [
-                        dcc.Graph(
-                            figure=px.bar(area_grouped_by_provinsi_sorted, x='Provinsi', y='Luas Tanah (Ha)')
-                        )
-                    ],
-                    md=6,
-                )
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Luas Tanah (Ha) Berdasarkan Jenis Hutan'),
-                        dbc.Table.from_dataframe(area_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(area_grouped_by_jenis_sorted, x='Jenis Hutan', y='Luas Tanah (Ha)')
+                        dbc.Col(
+                            [
+                                html.H5("2. Luas Tanah (Ha) Berdasarkan Jenis Hutan"),
+                                dbc.Table.from_dataframe(
+                                    area_grouped_by_jenis_sorted,
+                                    striped=True,
+                                    bordered=True,
+                                    hover=True,
+                                ),
+                            ],
+                            md=6,
                         ),
-                    ],
-                    md=6,
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(
+                                        area_grouped_by_jenis_sorted,
+                                        x="Jenis Hutan",
+                                        y="Luas Tanah (Ha)",
+                                    )
+                                ),
+                            ],
+                            md=6,
+                        ),
+                    ]
                 ),
-            ]
-        ),         
-        ################################################################
-        # SUB CASE 2
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
+                ################################################################
+                # Pemenuhan Bahan Baku Berdasarkan Provinsi
+                ################################################################
+                dbc.Row(
                     [
-                        html.H3('Pemenuhan Bahan Baku Berdasarkan Provinsi'),
-                        html.P(f"Total Bahan Baku: {data_bahan_baku['value'].sum()}"),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                       html.Div(
-                            id='table-container2',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination2',
-                                    columns=[{'name': i, 'id': i} for i in bahan_baku_grouped_by_provinsi_sorted.columns],
-                                    data=bahan_baku_grouped_by_provinsi_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
+                        dbc.Col(
+                            [
+                                html.H5("3. Pemenuhan Bahan Baku Berdasarkan Provinsi"),
+                                html.P(
+                                    f"Total Bahan Baku: {data_bahan_baku['value'].sum()}"
+                                ),
+                                html.Div(
+                                    [html.Label("Rows per Page: "), dropdown_rows]
+                                ),
+                                html.Div(
+                                    id="table-container2",
+                                    style={
+                                        "display": "none"
+                                    },  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id="table-pagination2",
+                                            columns=[
+                                                {"name": i, "id": i}
+                                                for i in bahan_baku_grouped_by_provinsi_sorted.columns
+                                            ],
+                                            data=bahan_baku_grouped_by_provinsi_sorted.to_dict(
+                                                "records"
+                                            ),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action="custom",
+                                            style_data={
+                                                "whiteSpace": "normal",
+                                                "height": "auto",
+                                            },
+                                            style_cell={"textAlign": "center"},
+                                            style_table={"overflowX": "auto"},
+                                        )
+                                    ],
+                                ),
+                                html.Div(id="table-pagination-container2"),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(
+                                        bahan_baku_grouped_by_provinsi_sorted,
+                                        x="Provinsi",
+                                        y="Bahan Baku",
+                                    )
                                 )
-                            ]
+                            ],
+                            md=6,
                         ),
-                        html.Div(id='table-pagination-container2')
-                    ],
-                    md=6,
+                    ]
                 ),
-                dbc.Col(
+                ################################################################
+                # Pemenuhan Bahan Baku Berdasarkan Jenis Kayu
+                ################################################################
+                dbc.Row(
                     [
-                        dcc.Graph(
-                            figure=px.bar(bahan_baku_grouped_by_provinsi_sorted, x='Provinsi', y='Bahan Baku')
-                        )
-                    ],
-                    md=6,
-                )
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Pemenuhan Bahan Baku Berdasarkan Jenis Kayu'),
-                        dbc.Table.from_dataframe(bahan_baku_grouped_by_jenis_sorted, striped=True, bordered=True, hover=True),
-                    ],
-                    md=6,
-                ),
-                dbc.Col(
-                    [
-                        dcc.Graph(
-                            figure=px.bar(bahan_baku_grouped_by_jenis_sorted, x='Jenis Kayu', y='Bahan Baku')
+                        dbc.Col(
+                            [
+                                html.H5("4. Pemenuhan Bahan Baku Berdasarkan Jenis Kayu"),
+                                dbc.Table.from_dataframe(
+                                    bahan_baku_grouped_by_jenis_sorted,
+                                    striped=True,
+                                    bordered=True,
+                                    hover=True,
+                                ),
+                            ],
+                            md=6,
                         ),
-                    ],
-                    md=6,
-                ),
-            ]
-        ),     
-        ################################################################
-        # SUB CASE 3
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Perbandingan Provinsi berdasarkan Kawasan Hutan dan Bahan Baku'),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                       html.Div(
-                            id='table-container3',
-                            style={'display': 'none'},  # Hide the container initially
-                            children=[
-                                dash_table.DataTable(
-                                    id='table-pagination3',
-                                    columns=[{'name': i, 'id': i} for i in merged_data_sorted.columns],
-                                    data=merged_data_sorted.to_dict('records'),
-                                    page_current=0,
-                                    page_size=PAGE_SIZE,
-                                    page_action='custom',
-                                    style_data={'whiteSpace': 'normal', 'height': 'auto'},
-                                    style_cell={'textAlign': 'center'},
-                                    style_table={'overflowX': 'auto'},
-                                )
-                            ]
+                        dbc.Col(
+                            [
+                                dcc.Graph(
+                                    figure=px.bar(
+                                        bahan_baku_grouped_by_jenis_sorted,
+                                        x="Jenis Kayu",
+                                        y="Bahan Baku",
+                                    )
+                                ),
+                            ],
+                            md=6,
                         ),
-                        html.Div(id='table-pagination-container3')
-                    ],
-                    md=6,
+                    ]
                 ),
-                dbc.Col(
+                ################################################################
+                # Perbandingan Provinsi berdasarkan Kawasan Hutan dan Bahan Baku
+                ################################################################
+                dbc.Row(
                     [
-                        dcc.Graph(id='bar-chart', figure=fig)
-                    ],
-                    md=6,
-                )
-            ]
-        ),   
-        ################################################################
-        # SUB CASE 4
-        ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H3('Perbandingan Bahan Baku Impor dan Lokal'),
-                        html.Div([
-                                html.Label('Rows per Page: '),
-                                dropdown_rows
-                            ]),
-                       dbc.Table.from_dataframe(comparison_data, striped=True, bordered=True, hover=True),
-                    ],
-                    md=6,
+                        dbc.Col(
+                            [
+                                html.H5("5. Perbandingan Provinsi berdasarkan Kawasan Hutan dan Bahan Baku"),
+                                html.Div(
+                                    [html.Label("Rows per Page: "), dropdown_rows]
+                                ),
+                                html.Div(
+                                    id="table-container3",
+                                    style={
+                                        "display": "none"
+                                    },  # Hide the container initially
+                                    children=[
+                                        dash_table.DataTable(
+                                            id="table-pagination3",
+                                            columns=[
+                                                {"name": i, "id": i}
+                                                for i in merged_data_sorted.columns
+                                            ],
+                                            data=merged_data_sorted.to_dict("records"),
+                                            page_current=0,
+                                            page_size=PAGE_SIZE,
+                                            page_action="custom",
+                                            style_data={
+                                                "whiteSpace": "normal",
+                                                "height": "auto",
+                                            },
+                                            style_cell={"textAlign": "center"},
+                                            style_table={"overflowX": "auto"},
+                                        )
+                                    ],
+                                ),
+                                html.Div(id="table-pagination-container3"),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [dcc.Graph(id="bar-chart", figure=fig)],
+                            md=6,
+                        ),
+                    ]
                 ),
-                dbc.Col(
+                ################################################################
+                # Perbandingan Bahan Baku Impor dan Lokal
+                ################################################################
+                dbc.Row(
                     [
-                        dcc.Graph(id='bar-chart', figure=fig2)
-                    ],
-                    md=6,
-                )
-            ]
+                        dbc.Col(
+                            [
+                                html.H5("6. Perbandingan Bahan Baku Impor dan Lokal"),
+                                html.Div(
+                                    [html.Label("Rows per Page: "), dropdown_rows]
+                                ),
+                                dbc.Table.from_dataframe(
+                                    comparison_data,
+                                    striped=True,
+                                    bordered=True,
+                                    hover=True,
+                                ),
+                            ],
+                            md=6,
+                        ),
+                        dbc.Col(
+                            [dcc.Graph(id="bar-chart", figure=fig2)],
+                            md=6,
+                        ),
+                    ]
+                ),
+                ################################################################
+                # Conclusion
+                ################################################################
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [   
+                                        html.H4("Kesimpulan", className="card-subtitle"),
+                                        html.P(
+                                            "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
+                                            className="card-text",
+                                        ),
+                                    ], className="mb-12",
+                                ),
+                            ), 
+                        ),
+                    ], style={"margin-top": "40px"},
+                ),
+            ],
+            className="frame",
         ),
     ]
 )
