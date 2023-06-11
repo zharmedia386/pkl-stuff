@@ -13,7 +13,7 @@ df = pd.read_csv("../PHL-Sankey.csv")
 # Membuat dataframe pertama
 df1 = df.groupby(['Bahan Baku', 'Kelompok Kayu Bulat'])['Volume(m3)'].count().reset_index()
 df1.columns = ['source', 'target', 'value']
-df1['source'] = df1['source'].map({'Kayu Tanaman': 'Kayu Tanaman', 'Kayu Alam': 'Kayu Alam', 'Kayu Perkebunan': 'Kayu Alam', 'Setengah Jadi': 'Kayu Alam', 'Limbah': 'Kayu Alam'})
+df1['source'] = df1['source'].map({'Kayu Tanaman': 'Kayu Tanaman', 'Kayu Alam': 'Kayu Alam', 'Kayu Perkebunan': 'Kayu Perkebunan', 'Setengah Jadi': 'Setengah Jadi', 'Limbah': 'Limbah'})
 
 # Membuat dataframe kedua
 df2 = df.groupby(['Kelompok Kayu Bulat', 'Jenis Kayu Olahan'])['Volume(m3)'].count().reset_index()
