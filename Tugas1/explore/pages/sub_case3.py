@@ -12,7 +12,7 @@ dash.register_page(
     title="Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi",
     description="Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi",
 )
-#sdas
+
 # Incorporate data
 df = pd.read_csv("../ekspor.csv")
 
