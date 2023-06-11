@@ -5,21 +5,19 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 
-dash.register_page(__name__,
-    path='/sub-case-3',
-    name='Sub Case 3',
-    title='Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi',
-    description='Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi'
+dash.register_page(
+    __name__,
+    path="/sub-case-3",
+    name="Sub Case 3",
+    title="Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi",
+    description="Nilai Ekspor, Volume Produksi Kayu Bulat & Olahan, Bahan Baku Per Provinsi",
 )
 
 # Incorporate data
 df = pd.read_csv("../ekspor.csv")
 
-# Initialize the app
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
 # App layout
-app.layout = html.Div(
+layout = html.Div(
     [
         dbc.Row(
             dbc.Col(
@@ -220,6 +218,6 @@ def update_divs(drop_year, drop_month, drop_province):
     return current_total_value, current_rank
 
 
-# Run the app
-if __name__ == "__main__":
-    app.run_server(debug=True)
+# # Run the app
+# if __name__ == "__main__":
+#     app.run_server(debug=True)
