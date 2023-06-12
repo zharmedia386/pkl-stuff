@@ -28,7 +28,6 @@ df2['target'] = df2['target'].map({ 'Chipwood' : 'Chipwood', 'Kayu Lapis dan LVL
 # 2 dataframe untuk supply demand kayu olah
 # Menggabungkan kedua dataframe
 links = pd.concat([df1, df2], axis=0)
-links
 
 # Mendapatkan daftar unique source dan target dari dataframe links
 unique_source_target = list(pd.unique(links[['source', 'target']].values.ravel('K')))
@@ -54,4 +53,5 @@ fig = go.Figure(data=[go.Sankey(
       target = links_dict["target"],
       value = links_dict["value"]
   ))])
+
 fig.update_layout(font_size=15,margin=dict(l=0,r=0,b=0,t=30))
