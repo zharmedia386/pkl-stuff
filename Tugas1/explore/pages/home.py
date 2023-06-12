@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 from apps import navigation
 import dash
 import dash_bootstrap_components as dbc
-from pages.details import home_detail, sankey
+from pages.details import home_detail, sankey, produksi_kayu_olahan
 import plotly.express as px
 
 dash.register_page(
@@ -133,6 +133,22 @@ layout = html.Div(
                             md=6,
                         ),
                     ],
+                    className="d-flex justify-content-center",
+                    style={"margin-left": "30px", "margin-right": "30px"},
+                ),
+                dbc.Row(
+                    dbc.Col(
+                        [
+                            html.H4(
+                                "Produksi Kayu Olahan di Indonesia",
+                                style={"margin-top": "60px"},
+                            ),
+                            dcc.Graph(
+                                figure=produksi_kayu_olahan.fig,
+                                id="line-char-kayu-olahan",
+                            ),
+                        ],
+                    ),
                     className="d-flex justify-content-center",
                     style={"margin-left": "30px", "margin-right": "30px"},
                 ),
