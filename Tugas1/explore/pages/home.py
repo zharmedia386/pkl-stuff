@@ -7,7 +7,15 @@ from dash.dependencies import Input, Output
 from apps import navigation
 import dash
 import dash_bootstrap_components as dbc
-from pages.details import home_detail, sankey, produksi_kayu_olahan
+from pages.details import (
+    home_detail,
+    sankey,
+    produksi_kayu_olahan,
+    ekspor_card,
+    kayu_bulat_card,
+    kayu_olahan_card,
+    bahan_baku_card,
+)
 import plotly.express as px
 
 dash.register_page(
@@ -28,9 +36,11 @@ layout = html.Div(
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.H5("Nilai Ekspor ($)"),
-                                    html.H1("$ 123,456,789"),
-                                    html.P("Per Bulan Januari 2023"),
+                                    html.H5("Nilai Ekspor"),
+                                    html.H1(ekspor_card.sum_of_value_usd),
+                                    html.P(
+                                        f"Per bulan {bahan_baku_card.latest_month} {bahan_baku_card.latest_year}"
+                                    ),
                                 ]
                             ),
                             style={"width": "360px", "margin-right": "50px"},
@@ -40,9 +50,11 @@ layout = html.Div(
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.H5("Volume Kayu Olahan (m3)"),
-                                    html.H1("123,456,789 m3"),
-                                    html.P("Per Bulan Januari 2023"),
+                                    html.H5("Volume Kayu Olahan"),
+                                    html.H1(kayu_olahan_card.sum_of_volume),
+                                    html.P(
+                                        f"Per bulan {bahan_baku_card.latest_month} {bahan_baku_card.latest_year}"
+                                    ),
                                 ]
                             ),
                             style={"width": "360px", "margin-right": "50px"},
@@ -52,9 +64,11 @@ layout = html.Div(
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.H5("Volume Kayu Bulat (m3)"),
-                                    html.H1("123,456,789 m3"),
-                                    html.P("Per Bulan Januari 2023"),
+                                    html.H5("Volume Kayu Bulat"),
+                                    html.H1(kayu_bulat_card.sum_of_volume),
+                                    html.P(
+                                        f"Per bulan {bahan_baku_card.latest_month} {bahan_baku_card.latest_year}"
+                                    ),
                                 ]
                             ),
                             style={"width": "360px", "margin-right": "50px"},
@@ -64,9 +78,11 @@ layout = html.Div(
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.H5("Volume Bahan Baku (m3)"),
-                                    html.H1("123,456,789 m3"),
-                                    html.P("Per Bulan Januari 2023"),
+                                    html.H5("Volume Bahan Baku"),
+                                    html.H1(bahan_baku_card.sum_of_value),
+                                    html.P(
+                                        f"Per bulan {bahan_baku_card.latest_month} {bahan_baku_card.latest_year}"
+                                    ),
                                 ]
                             ),
                             style={"width": "360px", "margin-right": "50px"},
