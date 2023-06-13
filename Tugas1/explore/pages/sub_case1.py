@@ -115,7 +115,7 @@ fig.add_trace(go.Bar(
     name='Luas Tanah (Ha)',
     yaxis='y',
     offset=0,
-    width=0.4,
+    width=0.2,
     marker_color='blue'
 ))
 
@@ -125,8 +125,8 @@ fig.add_trace(go.Bar(
     y=merged_data_sorted['Bahan Baku'],
     name='Bahan Baku',
     yaxis='y2',
-    offset=0.4,
-    width=0.4,
+    offset=0,
+    width=0.2,
     marker_color='green'
 ))
 
@@ -461,23 +461,23 @@ layout = html.Div(
                 ################################################################
                 # Conclusion
                 ################################################################
-                dbc.Row(
-                    [
-                        dbc.Col(
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [   
-                                        html.H4("Kesimpulan", className="card-subtitle"),
-                                        html.P(
-                                            "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
-                                            className="card-text",
-                                        ),
-                                    ], className="mb-12",
-                                ),
-                            ), 
-                        ),
-                    ], style={"margin-top": "40px"},
-                ),
+                # dbc.Row(
+                #     [
+                #         dbc.Col(
+                #             dbc.Card(
+                #                 dbc.CardBody(
+                #                     [   
+                #                         html.H4("Kesimpulan", className="card-subtitle"),
+                #                         html.P(
+                #                             "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
+                #                             className="card-text",
+                #                         ),
+                #                     ], className="mb-12",
+                #                 ),
+                #             ), 
+                #         ),
+                #     ], style={"margin-top": "40px"},
+                # ),
             ],
             className="frame",
         ),

@@ -525,27 +525,27 @@ layout = html.Div(
                 ################################################################
                 # Conclusion
                 ################################################################
-                dbc.Row(
-                    [
-                        dbc.Col(
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        html.H4(
-                                            "Kesimpulan", className="card-subtitle"
-                                        ),
-                                        html.P(
-                                            "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
-                                            className="card-text",
-                                        ),
-                                    ],
-                                    className="mb-12",
-                                ),
-                            ),
-                        ),
-                    ],
-                    style={"margin-top": "40px"},
-                ),
+                # dbc.Row(
+                #     [
+                #         dbc.Col(
+                #             dbc.Card(
+                #                 dbc.CardBody(
+                #                     [
+                #                         html.H4(
+                #                             "Kesimpulan", className="card-subtitle"
+                #                         ),
+                #                         html.P(
+                #                             "Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make Some quick example text to build on the card title and make ",
+                #                             className="card-text",
+                #                         ),
+                #                     ],
+                #                     className="mb-12",
+                #                 ),
+                #             ),
+                #         ),
+                #     ],
+                #     style={"margin-top": "40px"},
+                # ),
             ],
             className="frame",
         ),
